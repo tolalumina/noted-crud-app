@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\noted-app.props" />
-</Project>

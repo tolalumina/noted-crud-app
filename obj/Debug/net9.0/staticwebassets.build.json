@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "LJxVLPetdN0pwfnDRxjZu/XLo9MH/IQc7CmwKpS9Flk=",
-  "Source": "noted-app",
-  "BasePath": "_content/noted-app",
+  "Hash": "6LgAwrZZ54Yx0nCHmcWPqfv1JKi6PUs/VY3yrKgBPMc=",
+  "Source": "Backend-Noted",
+  "BasePath": "_content/Backend-Noted",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

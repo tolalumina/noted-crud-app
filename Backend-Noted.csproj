@@ -4,7 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>noted_app</RootNamespace>
+    <RootNamespace>Backend_Noted</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

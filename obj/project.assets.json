@@ -488,11 +488,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\asp.net\\Noted-Crud\\noted-app\\noted-app.csproj",
-      "projectName": "noted-app",
-      "projectPath": "D:\\asp.net\\Noted-Crud\\noted-app\\noted-app.csproj",
+      "projectUniqueName": "D:\\asp.net\\TB-Project\\Backend-Noted\\Backend-Noted\\Backend-Noted.csproj",
+      "projectName": "Backend-Noted",
+      "projectPath": "D:\\asp.net\\TB-Project\\Backend-Noted\\Backend-Noted\\Backend-Noted.csproj",
       "packagesPath": "C:\\Users\\tolad\\.nuget\\packages\\",
-      "outputPath": "D:\\asp.net\\Noted-Crud\\noted-app\\obj\\",
+      "outputPath": "D:\\asp.net\\TB-Project\\Backend-Noted\\Backend-Noted\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tolad\\AppData\\Roaming\\NuGet\\NuGet.Config"
