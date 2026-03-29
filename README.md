@@ -32,7 +32,7 @@
 
 <h2 style="border-bottom: 2px solid #2575fc; padding-bottom: 5px; color: #333;">📡 API Endpoints</h2>
 
-<table style="width: 100%; border-collapse: collapse;">
+<table style="width: 500; border-collapse: collapse;">
   <thead>
     <tr style="background-color: #f8f9fa;">
       <th style="padding: 12px; text-align: left; border: 1px solid #dee2e6;">Action</th>
@@ -71,9 +71,6 @@
 
 <br />
 
-### 📤 Request Body (POST/PUT)
-```json
-{
-  "title": "Strategy Meeting",
-  "content": "Discuss the new API deployment timeline."
-}
+
+
+
