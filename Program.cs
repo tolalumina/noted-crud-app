@@ -1,47 +1,44 @@
-using System.Text.Json;
-using Microsoft.AspNetCore.Http.HttpResults;
-
+using NotedApp.Api.Models.DTOs;
+using NotedApp.Api.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// 1. ADD SERVICES TO THE CONTAINER
+builder.Services.AddControllers();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient();
+
+// 2. CONFIGURE CORS (Crucial for Vue 3 + Axios)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowVueApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173") // Default Vue 3 port
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// 3. CONFIGURE THE HTTP REQUEST PIPELINE
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapSwagger();
+    app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Redirect HTTP to HTTPS
 app.UseHttpsRedirection();
 
-app.MapGet("/product", async (HttpClient httpClient) =>
-{
-     var respone = await httpClient.GetAsync("https://api.escuelajs.co/api/v1/products");
+// Apply the CORS policy BEFORE mapping controllers
+app.UseCors("AllowVueApp");
 
-    if (respone.StatusCode == System.Net.HttpStatusCode.OK)
-    { 
-        var data = await respone.Content.ReadAsStringAsync();
-        return Results.Ok(data);
-    }
-    else
-    {
-       return Results.BadRequest("Faild to load Products");
-    }
-   
-});
+app.UseAuthorization();
+
+// This line "calls" the controllers based on the [Route] attributes
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
