@@ -38,7 +38,6 @@ app.UseCors("AllowVueApp");
 
 app.UseAuthorization();
 
-// This line "calls" the controllers based on the [Route] attributes
 app.MapControllers();
 
 app.Run();
