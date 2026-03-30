@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 
 // 1. Dynamic Port Binding
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 builder.WebHost.UseUrls($"http://*:{port}");
 // Database Context
 builder.Services.AddSingleton<NotedDbContext>();
