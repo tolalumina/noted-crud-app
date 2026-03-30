@@ -1,18 +1,22 @@
-# ---------- Build Stage ----------
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# 1. Change SDK from 8.0 to 9.0
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
+# Copy and restore
+COPY ["Backend-Noted.csproj", "./"]
+RUN dotnet restore "Backend-Noted.csproj"
+
+# Build and publish
 COPY . .
-RUN dotnet restore
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish "Backend-Noted.csproj" -c Release -o /app/publish
 
-# ---------- Runtime Stage ----------
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# 2. Change Runtime from 8.0 to 9.0
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
-
 COPY --from=build /app/publish .
 
-# IMPORTANT: use PORT from Render
-ENV ASPNETCORE_URLS=http://+:${PORT}
+# Port binding for Render
+ENV PORT=10000
+EXPOSE 10000
 
-ENTRYPOINT ["dotnet", "publish/Backend-Noted.dll"]
+ENTRYPOINT ["dotnet", "Backend-Noted.dll"]
