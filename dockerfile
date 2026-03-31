@@ -16,7 +16,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # Port binding for Render
-ENV PORT=10000
-EXPOSE 10000
+ENV PORT=8080
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "Backend-Noted.dll"]

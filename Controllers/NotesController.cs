@@ -56,4 +56,29 @@ public class NotesController : ControllerBase
         if (affected == 0) return NotFound();
         return NoContent();
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteNoted(int id)
+    {
+        try
+        {
+            using var db  = _context.CreateConnection();
+
+            var sql = "DELETE FROM Notes WHERE note_Id = @id AND UserId = 1";
+            var rowsAffected = await db.ExecuteAsync(sql, new { id });
+            
+            if(rowsAffected > 0)
+            {
+                return Ok(new { status = "Success", message = "Delete success" });
+            }
+            return NotFound(new { status = "Error", message = "Note not found" });
+        }
+        catch (Exception ex)
+    {
+        // 2. Catch any other unexpected C# errors
+        return StatusCode(500, new { status = "Error", message = "An internal server error occurred." });
+    }
+
+}
+
 }
