@@ -4,6 +4,7 @@ using NotedApp.Api.Models.Entities;
 using NotedApp.Api.Models.DTOs;
 using NotedApp.Api.Data; // 1. Import your new Data folder
 
+
 [ApiController]
 [Route("api/[controller]")]
 public class NotesController : ControllerBase
@@ -73,7 +74,7 @@ public class NotesController : ControllerBase
             }
             return NotFound(new { status = "Error", message = "Note not found" });
         }
-        catch (Exception ex)
+        catch (Exception)
     {
         // 2. Catch any other unexpected C# errors
         return StatusCode(500, new { status = "Error", message = "An internal server error occurred." });
