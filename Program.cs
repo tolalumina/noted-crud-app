@@ -51,8 +51,8 @@ app.UseCors("AllowVueApp");
 app.UseAuthorization();
 app.MapControllers();
 
-// --- 3. FIX THE 404 ERROR ---
-// Add a default route so the "Root" URL (/) returns a message instead of a 404
-app.MapGet("/", () => "Noted API is running! Visit /swagger for documentation.");
+
+// This handles both GET and HEAD requests to the root
+app.MapMethods("/", new[] { "GET", "HEAD" }, () => "Noted API is running!");
 
 app.Run();
