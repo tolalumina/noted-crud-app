@@ -35,12 +35,11 @@ var app = builder.Build();
 
 // --- 2. CONFIGURE HTTP PIPELINE ---
 
-if (app.Environment.IsDevelopment() || Environment.GetEnvironmentVariable("RENDER") == "true")
+// Change this line in Program.cs
+if (!app.Environment.IsDevelopment() && Environment.GetEnvironmentVariable("RENDER") != "true")
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseHttpsRedirection();
 }
-
 
 
 app.UseHttpsRedirection();
